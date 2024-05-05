@@ -2,16 +2,14 @@ import React from 'react';
 import { StyleSheet, Image, TextInput, SafeAreaView, Button } from 'react-native';
 // Import the package, NIP-07 signer and NDK event
 import NDK, { NDKEvent, NDKNip07Signer } from "@nostr-dev-kit/ndk";
+import CreateCalendarEvent from './createCalendarEvent';
 
 const nip07signer = new NDKNip07Signer();
 const ndk = new NDK({
-    signer: nip07signer,
-    explicitRelayUrls: ["wss://relay.damus.io", "wss://relay.primal.net", "wss://nos.lol"],
+    signer: nip07signer
 });
 
 async function helloWorld(message) {
-    console.log("message")
-    console.log(message)
     await ndk.connect();
     nip07signer.user().then(async (user) => {
         if (!!user.npub) {
@@ -22,7 +20,7 @@ async function helloWorld(message) {
     const ndkEvent = new NDKEvent(ndk);
     ndkEvent.kind = 1;
     ndkEvent.content = message;
-    ndkEvent.publish(); // This will trigger the extension to ask the user to confirm signing.    
+    ndkEvent.publish(); // This will trigger the extension to ask the user to confirm signing.
 }
 
 export default function Nostr() {
@@ -42,6 +40,7 @@ export default function Nostr() {
                 color="#841584"
                 accessibilityLabel="Learn more about this purple button"
             />
+            <CreateCalendarEvent/>
         </SafeAreaView>
     );
 }
