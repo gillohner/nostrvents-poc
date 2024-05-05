@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, TextInput, SafeAreaView, Button } from 'react-native';
 // Import the package, NIP-07 signer and NDK event
 import NDK, { NDKEvent, NDKNip07Signer } from "@nostr-dev-kit/ndk";
-import CreateCalendarEvent from './createCalendarEvent';
+import CreateCalendarEvent from './CreateCalendarEvent';
 
 const nip07signer = new NDKNip07Signer();
 const ndk = new NDK({

@@ -1,15 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Nostr from './components/nostr'
+import EventOverview from './components/EventOverview';
+import CreateCalendarEvent from './components/CreateCalendarEvent'
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={{ color: '#fff' }}>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-
-      <Nostr placeholderImageSource="text"/>
-    </View>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="NOSTR" component={Nostr} />
+          <Tab.Screen name="Events" component={EventOverview} />
+          <Tab.Screen name="Add Event" component={CreateCalendarEvent} />
+        </Tab.Navigator>
+      </NavigationContainer>
   );
 }
 
